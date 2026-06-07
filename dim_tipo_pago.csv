@@ -1,0 +1,4 @@
+id_tipo_pago,tipo_pago
+1,Boleto
+2,Gratuidad
+3,Prepago

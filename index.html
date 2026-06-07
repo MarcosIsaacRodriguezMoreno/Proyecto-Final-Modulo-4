@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Metro CDMX</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background-color: #0B0B0B;
+            color: #FFFFFF;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            min-height: 420px;
+            background:
+                linear-gradient(rgba(11, 11, 11, 0.85), rgba(11, 11, 11, 0.95)),
+                radial-gradient(circle at top left, #F37021 0%, transparent 35%),
+                linear-gradient(135deg, #111111, #0B0B0B);
+            display: flex;
+            align-items: center;
+            padding: 55px 70px;
+            border-bottom: 6px solid #F37021;
+        }
+
+        .portada {
+            max-width: 1050px;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background-color: #F37021;
+            color: #FFFFFF;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin-bottom: 18px;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #FFFFFF;
+            font-size: 52px;
+            line-height: 1.1;
+        }
+
+        header h1 span {
+            color: #F37021;
+        }
+
+        header p {
+            margin-top: 18px;
+            color: #D0D0D0;
+            font-size: 19px;
+            line-height: 1.6;
+            max-width: 950px;
+        }
+
+        main {
+            padding: 42px 70px;
+        }
+
+        .bloque {
+            background-color: #111111;
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 35px;
+        }
+
+        .bloque-destacado {
+            border-left: 7px solid #F37021;
+        }
+
+        .bloque h2 {
+            margin-top: 0;
+            color: #F37021;
+            font-size: 28px;
+        }
+
+        .bloque p {
+            color: #D0D0D0;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 35px;
+        }
+
+        .tarjeta {
+            background: linear-gradient(180deg, #151515, #101010);
+            border: 1px solid #2A2A2A;
+            border-radius: 14px;
+            padding: 22px;
+            min-height: 145px;
+        }
+
+        .tarjeta h3 {
+            margin: 0 0 10px 0;
+            color: #F37021;
+            font-size: 19px;
+        }
+
+        .tarjeta p {
+            margin: 0;
+            color: #D0D0D0;
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .indice {
+            background-color: #111111;
+            border: 1px solid #2A2A2A;
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 40px;
+        }
+
+        .indice h2 {
+            margin-top: 0;
+            color: #F37021;
+            font-size: 28px;
+        }
+
+        .indice p {
+            color: #D0D0D0;
+            line-height: 1.6;
+        }
+
+        .links-indice {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .links-indice a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: inline-block;
+            padding: 11px 15px;
+            background-color: #1A1A1A;
+            border-left: 4px solid #F37021;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .links-indice a:hover {
+            background-color: #2A2A2A;
+            transform: translateY(-2px);
+        }
+
+        .seccion-grafica {
+            background-color: #111111;
+            border: 1px solid #2A2A2A;
+            border-radius: 18px;
+            padding: 26px;
+            margin-bottom: 42px;
+        }
+
+        .seccion-grafica h2 {
+            color: #F37021;
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 27px;
+        }
+
+        .subtitulo-grafica {
+            color: #BDBDBD;
+            font-size: 15px;
+            margin-bottom: 18px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 720px;
+            border: none;
+            border-radius: 12px;
+            margin-top: 12px;
+            background-color: #0B0B0B;
+        }
+
+        .iframe-alto {
+            height: 980px;
+        }
+
+        .interpretacion {
+            background-color: #0B0B0B;
+            border-left: 6px solid #F37021;
+            border-radius: 10px;
+            padding: 22px;
+            margin-top: 24px;
+        }
+
+        .interpretacion h3 {
+            margin-top: 0;
+            color: #F37021;
+            font-size: 20px;
+        }
+
+        .interpretacion p {
+            color: #DADADA;
+            line-height: 1.75;
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+
+        .nota {
+            background-color: #171717;
+            border: 1px solid #333333;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 18px;
+            color: #D0D0D0;
+            line-height: 1.6;
+        }
+
+        .nota strong {
+            color: #F37021;
+        }
+
+        footer {
+            padding: 28px 70px;
+            color: #999999;
+            border-top: 1px solid #2A2A2A;
+            font-size: 14px;
+            background-color: #080808;
+        }
+
+        @media (max-width: 1200px) {
+            .tarjetas {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header h1 {
+                font-size: 44px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            header, main, footer {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            header {
+                min-height: auto;
+                padding-top: 42px;
+                padding-bottom: 42px;
+            }
+
+            header h1 {
+                font-size: 34px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            .tarjetas {
+                grid-template-columns: 1fr;
+            }
+
+            iframe {
+                height: 600px;
+            }
+
+            .iframe-alto {
+                height: 850px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <section class="portada">
+            <div class="etiqueta">Proyecto final · Módulo 4</div>
+            <h1>Dashboard de afluencia del <span>Metro CDMX</span></h1>
+            <p>
+                Visualización interactiva de la afluencia de usuarios del Sistema de Transporte Colectivo Metro,
+                construida a partir de un modelo OLAP en AWS y gráficas desarrolladas con Python, SQL, Pandas y Plotly.
+            </p>
+        </section>
+    </header>
+
+    <main>
+
+        <section class="bloque bloque-destacado">
+            <h2>Descripción del proyecto</h2>
+            <p>
+                Este dashboard presenta un análisis exploratorio de la afluencia del Metro de la Ciudad de México
+                durante el periodo 2021-2026. El objetivo es identificar tendencias generales, diferencias entre líneas,
+                patrones semanales, estaciones de mayor demanda y días con comportamiento atípico.
+            </p>
+            <p>
+                Las visualizaciones se generaron a partir de consultas SQL realizadas sobre una base de datos OLAP
+                alojada en AWS. Cada gráfica fue exportada como archivo HTML interactivo e integrada en esta página
+                mediante <strong>iframes</strong>, lo que permite conservar las herramientas de interacción de Plotly.
+            </p>
+        </section>
+
+        <section class="tarjetas">
+            <article class="tarjeta">
+                <h3>Fuente de información</h3>
+                <p>Modelo OLAP con tabla de hechos de afluencia y dimensiones de fecha, estación y tipo de pago.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Herramientas</h3>
+                <p>Python, Pandas, SQLAlchemy, PostgreSQL/Aurora, Plotly, HTML y GitHub Pages.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Interactividad</h3>
+                <p>Las gráficas permiten hacer zoom, desplazarse, consultar valores, activar leyendas y descargar imágenes.</p>
+            </article>
+
+            <article class="tarjeta">
+                <h3>Objetivo analítico</h3>
+                <p>Entender cómo cambió la movilidad del Metro después de la pandemia y ante eventos operativos relevantes.</p>
+            </article>
+        </section>
+
+        <section class="bloque">
+            <h2>Cómo leer las gráficas interactivas</h2>
+            <p>
+                Cada gráfica conserva la funcionalidad de Plotly. Al pasar el cursor sobre un punto, barra o celda se
+                muestran los valores exactos. También es posible acercarse a una sección específica, moverse dentro de
+                la gráfica, activar o desactivar líneas desde la leyenda y descargar la visualización como imagen.
+            </p>
+            <div class="nota">
+                <strong>Nota de contexto:</strong> los resultados deben interpretarse considerando eventos relevantes
+                del periodo, como el regreso gradual a la movilidad después de la pandemia, el derrumbe de la Línea 12
+                ocurrido el 3 de mayo de 2021 y los trabajos de modernización de la Línea 1 iniciados en 2022 y concluidos
+                en 2025.
+            </div>
+        </section>
+
+        <section class="indice">
+            <h2>Índice de navegación</h2>
+            <p>Selecciona una gráfica para ir directamente a su sección.</p>
+            <div class="links-indice">
+                <a href="#g1">1. Mensual total</a>
+                <a href="#g2">2. Mensual por línea</a>
+                <a href="#g3">3. Promedio por línea</a>
+                <a href="#g4">4. Línea vs día</a>
+                <a href="#g5">5. Top estaciones</a>
+                <a href="#g6">6. Año vs mes</a>
+                <a href="#g7">7. Boxplot por línea</a>
+                <a href="#g8">8. Participación por línea</a>
+                <a href="#g9">9. Mosaico por línea</a>
+                <a href="#g10">10. Diaria total</a>
+                <a href="#g11">11. Día de semana</a>
+                <a href="#g12">12. Días atípicos</a>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g1">
+            <h2>1. Afluencia mensual total del Metro</h2>
+            <p class="subtitulo-grafica">Evolución agregada mensual de usuarios en toda la red.</p>
+            <iframe src="graficas/01_afluencia_mensual_total.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    La afluencia mensual total del Metro muestra una recuperación progresiva entre 2021 y 2026. Al inicio del periodo se observan niveles bajos, cercanos a los 40 millones de usuarios mensuales, lo cual puede explicarse por el regreso gradual a la vida cotidiana después de la pandemia. Durante 2021 todavía existían medidas como trabajo remoto, clases en línea y menor movilidad general, por lo que la demanda del sistema era menor.
+                    A lo largo de 2021 y 2022 se observa un crecimiento acelerado, asociado con la reapertura de actividades económicas, escolares y sociales. Posteriormente, entre 2023 y 2024, la afluencia se estabiliza en niveles más altos, generalmente entre 85 y 105 millones de usuarios mensuales. El punto más alto se presenta hacia finales de 2025, cuando la afluencia supera los 120 millones de usuarios mensuales. En conjunto, la gráfica refleja el proceso de recuperación del transporte público después de la pandemia y muestra cómo la demanda del Metro volvió gradualmente a niveles altos.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g2">
+            <h2>2. Afluencia mensual por línea</h2>
+            <p class="subtitulo-grafica">Comparación mensual de usuarios por línea del Metro.</p>
+            <iframe src="graficas/02_afluencia_mensual_por_linea.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    La afluencia mensual por línea permite observar que la recuperación y el comportamiento de la demanda no fueron iguales en toda la red. La Línea 2 se mantiene como una de las líneas con mayor número de usuarios durante prácticamente todo el periodo, alcanzando valores cercanos a los 20 millones de usuarios mensuales en algunos meses. La Línea 3 también presenta niveles elevados y relativamente estables.
+                    Un caso importante es la Línea 12, cuya afluencia cae rápidamente después del derrumbe ocurrido el 3 de mayo de 2021 en su tramo elevado. La reducción a niveles cercanos a cero se relaciona con las reparaciones y cierres posteriores. También destaca la Línea 1, que presenta una caída fuerte a partir de 2022 debido a los trabajos de modernización y cierre por etapas. En general, la gráfica muestra que la afluencia por línea está determinada tanto por la demanda habitual de movilidad como por eventos extraordinarios, cierres, reparaciones y reaperturas.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g3">
+            <h2>3. Promedio diario de usuarios por línea</h2>
+            <p class="subtitulo-grafica">Carga promedio diaria de pasajeros por línea.</p>
+            <iframe src="graficas/03_promedio_diario_por_linea.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El promedio diario de usuarios por línea muestra diferencias claras en la carga de pasajeros dentro de la red. La Línea 2 es la de mayor afluencia promedio diaria, con aproximadamente 504,706 usuarios, seguida por la Línea 3, con cerca de 435,187 usuarios diarios. Estas dos líneas concentran una parte importante de la movilidad cotidiana del Metro, por lo que pueden considerarse corredores de alta demanda.
+                    En un segundo grupo se encuentran la Línea B, la Línea 8 y la Línea 1, con promedios superiores a 270 mil usuarios diarios. Por otro lado, la Línea 4 y la Línea 6 presentan los valores más bajos. Esta gráfica permite identificar qué líneas soportan mayor presión operativa en un día promedio.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g4">
+            <h2>4. Promedio de usuarios por línea y día de la semana</h2>
+            <p class="subtitulo-grafica">Patrones semanales de afluencia por línea.</p>
+            <iframe src="graficas/04_heatmap_linea_dia.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El heatmap muestra que la afluencia del Metro es considerablemente mayor de lunes a viernes, especialmente en líneas de alta demanda como la Línea 2, Línea 3, Línea B y Línea 8. Esto refleja que una parte importante del uso del Metro está asociada con actividades laborales, escolares y desplazamientos cotidianos.
+                    La Línea 2 presenta los valores más altos durante prácticamente toda la semana laboral, alcanzando su mayor promedio el viernes, con más de 566 mil usuarios. Durante el fin de semana se observa una caída generalizada, especialmente el domingo. En conjunto, la gráfica muestra un patrón semanal muy claro: mayor demanda entre semana, reducción el sábado y una baja más marcada el domingo.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g5">
+            <h2>5. Top 15 estaciones con mayor afluencia promedio diaria</h2>
+            <p class="subtitulo-grafica">Ranking de estaciones con mayor concentración de usuarios.</p>
+            <iframe src="graficas/05_top_estaciones.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El ranking de estaciones muestra que las estaciones con mayor afluencia promedio diaria suelen ser puntos estratégicos de conexión, terminales o estaciones ubicadas en zonas periféricas de la ciudad. La estación con mayor promedio es Constitución de 1917, de la Línea 8, con aproximadamente 84,626 usuarios diarios, seguida por Indios Verdes, de la Línea 3, con alrededor de 81,029 usuarios diarios.
+                    Muchas de las estaciones que aparecen en el ranking, como Cuatro Caminos, Tasqueña, Pantitlán, Ciudad Azteca, Santa Marta y La Paz, se ubican en extremos de líneas o zonas de conexión con otros medios de transporte. También aparecen estaciones de transbordo o alta conectividad, como Tacubaya y Pantitlán. En conjunto, la gráfica muestra que la mayor concentración de usuarios no solo depende de la línea, sino de la función urbana de cada estación dentro de la red de movilidad.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g6">
+            <h2>6. Afluencia total por año y mes</h2>
+            <p class="subtitulo-grafica">Mapa de calor para comparar meses y años.</p>
+            <iframe src="graficas/06_heatmap_anio_mes.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El heatmap año-mes permite observar la evolución de la afluencia desde una perspectiva temporal más compacta. En 2021 se registran los valores más bajos del periodo, especialmente al inicio del año, cuando la movilidad todavía estaba afectada por las medidas posteriores a la pandemia.
+                    Conforme avanza 2021, la afluencia aumenta gradualmente, pasando de aproximadamente 41 millones de usuarios en enero a cerca de 84 millones en diciembre. Durante 2022 y 2023, la afluencia se estabiliza en niveles más altos. Para 2024, varios meses ya alcanzan o superan los 100 millones, y el año 2025 concentra los valores más altos del periodo. Esta gráfica confirma que la recuperación de la afluencia no fue inmediata, sino gradual y sostenida a lo largo de varios años.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g7">
+            <h2>7. Distribución de afluencia diaria por línea</h2>
+            <p class="subtitulo-grafica">Boxplot de variabilidad diaria por línea.</p>
+            <iframe src="graficas/07_boxplot_linea.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El boxplot muestra la distribución diaria de usuarios por línea y permite comparar tanto el nivel típico de afluencia como su variabilidad. La Línea 2 y la Línea 3 presentan las distribuciones más altas, con medianas elevadas y valores máximos muy superiores al resto de las líneas. La Línea 2 destaca por alcanzar valores máximos superiores a los 800 mil usuarios diarios.
+                    También se observan valores cercanos a cero en algunas líneas. Estos puntos pueden explicarse por cierres, reparaciones, operación parcial o eventos extraordinarios. En particular, la Línea 12 tuvo una caída fuerte después del derrumbe de mayo de 2021, mientras que la Línea 1 presentó reducciones importantes por los trabajos de modernización iniciados en 2022. En conjunto, la gráfica ayuda a identificar tanto la carga habitual de cada línea como posibles anomalías operativas.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g8">
+            <h2>8. Participación de afluencia total por línea</h2>
+            <p class="subtitulo-grafica">Contribución acumulada de cada línea al total de usuarios.</p>
+            <iframe src="graficas/08_treemap_linea.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El treemap muestra la contribución acumulada de cada línea a la afluencia total del sistema. La Línea 2 ocupa la mayor proporción del área, confirmando que es la línea con mayor participación en el volumen total de pasajeros transportados. También destacan la Línea 3, la Línea B y la Línea 8, que representan una parte importante de la movilidad acumulada.
+                    Un segundo grupo está formado por la Línea 1, Línea 7, Línea A y Línea 9, que tienen participaciones relevantes pero menores. En cambio, líneas como la Línea 4, Línea 5 y Línea 6 ocupan áreas más pequeñas. La gráfica evidencia que la demanda del Metro está concentrada en un conjunto reducido de líneas, lo cual ayuda a entender dónde se concentra la presión operativa del sistema.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g9">
+            <h2>9. Evolución mensual de afluencia por línea</h2>
+            <p class="subtitulo-grafica">Mosaico de series individuales por línea.</p>
+            <iframe class="iframe-alto" src="graficas/09_mosaico_linea.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    El mosaico por línea permite analizar el comportamiento individual de cada línea sin que las series se encimen. La Línea 2 y la Línea 3 muestran niveles altos y relativamente estables, confirmando su papel como líneas de alta demanda. La Línea B y la Línea 8 también mantienen niveles importantes, aunque por debajo de las líneas líderes.
+                    La Línea 12 presenta un comportamiento claramente afectado por el derrumbe ocurrido el 3 de mayo de 2021 y las reparaciones posteriores. La caída a niveles cercanos a cero refleja el cierre de la línea, mientras que el incremento posterior muestra su reapertura gradual. La Línea 1 también presenta una caída significativa a partir de 2022, relacionada con los trabajos de remodelación realizados por etapas. En conjunto, esta gráfica muestra que cada línea tiene una historia operativa distinta.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g10">
+            <h2>10. Afluencia diaria total del Metro</h2>
+            <p class="subtitulo-grafica">Evolución diaria de usuarios en toda la red.</p>
+            <iframe src="graficas/10_afluencia_diaria_total.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    La afluencia diaria total muestra con mayor detalle la evolución de la demanda del Metro entre 2021 y 2026. Al inicio del periodo, los niveles diarios se ubican principalmente entre 1 y 2.5 millones de usuarios, lo cual puede relacionarse con el regreso gradual a la normalidad después de la pandemia.
+                    Con el paso del tiempo se observa una tendencia creciente, hasta alcanzar valores frecuentes entre 3.5 y 4 millones de usuarios diarios en los años más recientes. La serie presenta ciclos semanales muy marcados: los picos y caídas se repiten continuamente, reflejando diferencias entre días laborales y fines de semana. Hacia finales de 2025 aparecen los valores más altos del periodo, con picos cercanos a los 5 millones de usuarios diarios.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g11">
+            <h2>11. Promedio de afluencia por día de la semana</h2>
+            <p class="subtitulo-grafica">Comparación del comportamiento promedio semanal.</p>
+            <iframe src="graficas/11_promedio_dia_semana.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    La gráfica confirma que la mayor afluencia del Metro se concentra entre semana. El viernes es el día con mayor promedio, con aproximadamente 3.35 millones de usuarios, seguido por miércoles y jueves, que también superan los 3.29 millones.
+                    El lunes mantiene un nivel alto, aunque ligeramente menor al resto de los días laborales. Esto puede deberse a dinámicas propias del inicio de semana, como menor actividad presencial en algunos sectores o esquemas híbridos de trabajo. El sábado presenta una disminución importante, mientras que el domingo registra el valor más bajo, con cerca de 1.75 millones. La gráfica resume de forma clara el patrón semanal del sistema: alta demanda de lunes a viernes, reducción el sábado y caída marcada el domingo.
+                </p>
+            </div>
+        </section>
+
+        <section class="seccion-grafica" id="g12">
+            <h2>12. Días atípicos de afluencia total</h2>
+            <p class="subtitulo-grafica">Identificación de días con afluencia inusualmente baja o alta.</p>
+            <iframe src="graficas/12_dias_atipicos.html"></iframe>
+            <div class="interpretacion">
+                <h3>Interpretación</h3>
+                <p>
+                    La gráfica identifica los días con afluencia normal, muy baja y muy alta respecto al comportamiento general de la serie diaria. La mayoría de los registros se encuentran dentro del rango normal, lo que indica que, aunque existe variabilidad diaria, la mayoría de los días siguen un patrón esperado.
+                    Los días con afluencia muy baja se concentran principalmente al inicio del periodo y en fechas puntuales. En 2021, estos valores bajos pueden explicarse por el contexto posterior a la pandemia, cuando todavía existían medidas como trabajo remoto, clases en línea y menor movilidad presencial. En otros años, las caídas pueden estar asociadas a domingos, días festivos, vacaciones, cierres parciales o interrupciones del servicio. Los días con afluencia muy alta se concentran hacia finales de 2025, cuando la demanda alcanza valores cercanos a 4.9 millones de usuarios diarios.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        Proyecto de visualización de datos · Metro CDMX · Python + SQL + Plotly + GitHub Pages
+    </footer>
+
+</body>
+</html>

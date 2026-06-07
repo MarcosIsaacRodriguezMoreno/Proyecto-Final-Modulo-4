@@ -1,0 +1,196 @@
+id_estacion,linea,estacion
+1,Linea 1,Balbuena
+2,Linea 1,Balderas
+3,Linea 1,Boulevard Puerto Aéreo
+4,Linea 1,Candelaria
+5,Linea 1,Chapultepec
+6,Linea 1,Cuauhtémoc
+7,Linea 1,Gómez Farías
+8,Linea 1,Insurgentes
+9,Linea 1,Isabel la Católica
+10,Linea 1,Juanacatlán
+11,Linea 1,Merced
+12,Linea 1,Moctezuma
+13,Linea 1,Observatorio
+14,Linea 1,Pantitlán
+15,Linea 1,Pino Suárez
+16,Linea 1,Salto del Agua
+17,Linea 1,San Lázaro
+18,Linea 1,Sevilla
+19,Linea 1,Tacubaya
+20,Linea 1,Zaragoza
+21,Linea 12,Atlalilco
+22,Linea 12,Calle 11
+23,Linea 12,Culhuacán
+24,Linea 12,Eje Central
+25,Linea 12,Ermita
+26,Linea 12,Hospital 20 de Noviembre
+27,Linea 12,Insurgentes Sur
+28,Linea 12,Lomas Estrella
+29,Linea 12,Mexicaltzingo
+30,Linea 12,Mixcoac
+31,Linea 12,Nopalera
+32,Linea 12,Olivos
+33,Linea 12,Parque de los Venados
+34,Linea 12,Periférico Oriente
+35,Linea 12,San Andrés Tomatlán
+36,Linea 12,Tezonco
+37,Linea 12,Tlaltenco
+38,Linea 12,Tláhuac
+39,Linea 12,Zapata
+40,Linea 12,Zapotitlán
+41,Linea 2,Allende
+42,Linea 2,Bellas Artes
+43,Linea 2,Chabacano
+44,Linea 2,Colegio Militar
+45,Linea 2,Cuatro Caminos
+46,Linea 2,Cuitláhuac
+47,Linea 2,Ermita
+48,Linea 2,General Anaya
+49,Linea 2,Hidalgo
+50,Linea 2,Nativitas
+51,Linea 2,Normal
+52,Linea 2,Panteones
+53,Linea 2,Pino Suárez
+54,Linea 2,Popotla
+55,Linea 2,Portales
+56,Linea 2,Revolución
+57,Linea 2,San Antonio Abad
+58,Linea 2,San Cosme
+59,Linea 2,Tacuba
+60,Linea 2,Tasqueña
+61,Linea 2,Viaducto
+62,Linea 2,Villa de Cortés
+63,Linea 2,Xola
+64,Linea 2,Zócalo/Tenochtitlan
+65,Linea 3,Balderas
+66,Linea 3,Centro Médico
+67,Linea 3,Copilco
+68,Linea 3,Coyoacán
+69,Linea 3,Deportivo 18 de Marzo
+70,Linea 3,División del Norte
+71,Linea 3,Etiopía/Plaza de la Transparencia
+72,Linea 3,Eugenia
+73,Linea 3,Guerrero
+74,Linea 3,Hidalgo
+75,Linea 3,Hospital General
+76,Linea 3,Indios Verdes
+77,Linea 3,Juárez
+78,Linea 3,La Raza
+79,Linea 3,Miguel Ángel de Quevedo
+80,Linea 3,Niños Héroes
+81,Linea 3,Potrero
+82,Linea 3,Tlatelolco
+83,Linea 3,Universidad
+84,Linea 3,Viveros/Derechos Humanos
+85,Linea 3,Zapata
+86,Linea 4,Bondojito
+87,Linea 4,Canal del Norte
+88,Linea 4,Candelaria
+89,Linea 4,Consulado
+90,Linea 4,Fray Servando
+91,Linea 4,Jamaica
+92,Linea 4,Martín Carrera
+93,Linea 4,Morelos
+94,Linea 4,Santa Anita
+95,Linea 4,Talismán
+96,Linea 5,Aragón
+97,Linea 5,Autobuses del Norte
+98,Linea 5,Consulado
+99,Linea 5,Eduardo Molina
+100,Linea 5,Hangares
+101,Linea 5,Instituto del Petróleo
+102,Linea 5,La Raza
+103,Linea 5,Misterios
+104,Linea 5,Oceanía
+105,Linea 5,Pantitlán
+106,Linea 5,Politécnico
+107,Linea 5,Terminal Aérea
+108,Linea 5,Valle Gómez
+109,Linea 6,Deportivo 18 de Marzo
+110,Linea 6,El Rosario
+111,Linea 6,Ferrería/Arena Ciudad de México
+112,Linea 6,Instituto del Petróleo
+113,Linea 6,La Villa/Basílica
+114,Linea 6,Lindavista
+115,Linea 6,Martín Carrera
+116,Linea 6,Norte 45
+117,Linea 6,Tezozómoc
+118,Linea 6,UAM-Azcapotzalco
+119,Linea 6,Vallejo
+120,Linea 7,Aquiles Serdán
+121,Linea 7,Auditorio
+122,Linea 7,Barranca del Muerto
+123,Linea 7,Camarones
+124,Linea 7,Constituyentes
+125,Linea 7,El Rosario
+126,Linea 7,Mixcoac
+127,Linea 7,Polanco
+128,Linea 7,Refinería
+129,Linea 7,San Antonio
+130,Linea 7,San Joaquín
+131,Linea 7,San Pedro de los Pinos
+132,Linea 7,Tacuba
+133,Linea 7,Tacubaya
+134,Linea 8,Aculco
+135,Linea 8,Apatlaco
+136,Linea 8,Atlalilco
+137,Linea 8,Bellas Artes
+138,Linea 8,Cerro de la Estrella
+139,Linea 8,Chabacano
+140,Linea 8,Constitución de 1917
+141,Linea 8,Coyuya
+142,Linea 8,Doctores
+143,Linea 8,Escuadrón 201
+144,Linea 8,Garibaldi/Lagunilla
+145,Linea 8,Iztacalco
+146,Linea 8,Iztapalapa
+147,Linea 8,La Viga
+148,Linea 8,Obrera
+149,Linea 8,Salto del Agua
+150,Linea 8,San Juan de Letrán
+151,Linea 8,Santa Anita
+152,Linea 8,UAM-I
+153,Linea 9,Centro Médico
+154,Linea 9,Chabacano
+155,Linea 9,Chilpancingo
+156,Linea 9,Ciudad Deportiva
+157,Linea 9,Jamaica
+158,Linea 9,Lázaro Cárdenas
+159,Linea 9,Mixiuhca
+160,Linea 9,Pantitlán
+161,Linea 9,Patriotismo
+162,Linea 9,Puebla
+163,Linea 9,Tacubaya
+164,Linea 9,Velódromo
+165,Linea A,Acatitla
+166,Linea A,Agrícola Oriental
+167,Linea A,Canal de San Juan
+168,Linea A,Guelatao
+169,Linea A,La Paz
+170,Linea A,Los Reyes
+171,Linea A,Pantitlán
+172,Linea A,Peñón Viejo
+173,Linea A,Santa Marta
+174,Linea A,Tepalcates
+175,Linea B,Bosque de Aragón
+176,Linea B,Buenavista
+177,Linea B,Ciudad Azteca
+178,Linea B,Deportivo Oceanía
+179,Linea B,Ecatepec
+180,Linea B,Garibaldi/Lagunilla
+181,Linea B,Guerrero
+182,Linea B,Impulsora
+183,Linea B,Lagunilla
+184,Linea B,Morelos
+185,Linea B,Múzquiz
+186,Linea B,Nezahualcóyotl
+187,Linea B,Oceanía
+188,Linea B,Olímpica
+189,Linea B,Plaza Aragón
+190,Linea B,Ricardo Flores Magón
+191,Linea B,Romero Rubio
+192,Linea B,Río de los Remedios
+193,Linea B,San Lázaro
+194,Linea B,Tepito
+195,Linea B,Villa de Aragón
