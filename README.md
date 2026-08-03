@@ -99,6 +99,34 @@ El grano de la tabla de hechos es:
 
 Esto significa que cada registro de la tabla de hechos representa la cantidad de usuarios asociada a una combinación específica de fecha, estación y tipo de pago.
 
+### Grano del modelo dimensional
+
+El grano de la tabla de hechos `fact_afluencia` se definió como:
+
+> Afluencia registrada por fecha, estación y tipo de pago.
+
+Esto significa que cada fila de la tabla de hechos representa la cantidad de usuarios correspondiente a una combinación única de:
+
+- Fecha (`id_fecha`)
+- Estación (`id_estacion`)
+- Tipo de pago (`id_tipo_pago`)
+
+A partir de este grano es posible realizar agregaciones por día, mes, año, línea, estación y tipo de pago, dependiendo del análisis requerido.
+
+### Decisiones de diseño del modelo
+
+El modelo dimensional se diseñó bajo una estructura tipo estrella para facilitar consultas analíticas y agregaciones eficientes.
+
+Las principales decisiones de diseño fueron:
+
+- Se separó la información temporal en `dim_fecha` para permitir análisis por día, mes, trimestre, año y día de la semana.
+- Se creó `dim_estacion` para concentrar la información de línea y estación, ya que cada estación pertenece a una línea específica dentro del análisis.
+- Se creó `dim_tipo_pago` para conservar la posibilidad de analizar la afluencia por forma de acceso, aunque las visualizaciones finales se enfocaron en línea, estación y tiempo.
+- La tabla `fact_afluencia` conserva únicamente las llaves hacia las dimensiones y la medida principal del proyecto: `afluencia`.
+- El identificador `id_fecha` se construyó en formato `YYYYMMDD`, lo que facilita la relación entre la tabla de hechos y la dimensión fecha.
+- El identificador `id_estacion` se generó a partir de las combinaciones únicas de línea y estación, evitando mezclar estaciones con el mismo nombre pero ubicadas en líneas distintas.
+- Para las gráficas de promedios diarios, primero se agregó la afluencia por fecha y después se calcularon promedios, evitando promediar directamente registros desagregados por tipo de pago.
+
 ---
 
 ## 6. Diagrama estrella del modelo OLAP
@@ -190,7 +218,7 @@ Contiene los medios o categorías de acceso.
 
 ## 8. Implementación en AWS
 
-El modelo dimensional se cargó en una base de datos PostgreSQL alojada en Amazon Aurora.
+El modelo dimensional se cargó en una base de datos PostgreSQL alojada en Amazon Aurora. La base funciona como la fuente OLAP del proyecto, desde la cual se ejecutan las consultas SQL utilizadas para generar las visualizaciones del dashboard.
 
 Se utilizó el esquema:
 
@@ -207,7 +235,85 @@ metro_dwh_py.dim_tipo_pago
 metro_dwh_py.fact_afluencia
 ```
 
-La conexión se realizó desde Python mediante `SQLAlchemy` y el conector `psycopg2`, permitiendo crear el esquema, cargar las tablas y ejecutar consultas SQL analíticas sobre el modelo dimensional.
+La conexión se realizó desde Python mediante `SQLAlchemy` y el conector `psycopg2`. A través de esta conexión se realizaron tres tareas principales:
+
+1. Creación del esquema `metro_dwh_py`.
+2. Carga de dimensiones y tabla de hechos.
+3. Ejecución de consultas SQL analíticas para alimentar las gráficas del dashboard.
+
+### Conectividad con AWS
+
+El flujo de conexión utilizado fue:
+
+```text
+Python / Jupyter Notebook
+        ↓
+SQLAlchemy
+        ↓
+psycopg2
+        ↓
+Amazon Aurora PostgreSQL
+        ↓
+Esquema metro_dwh_py
+```
+
+La cadena de conexión sigue la estructura general:
+
+```python
+postgresql+psycopg2://usuario:password@host:puerto/base_de_datos
+```
+
+En el notebook del proyecto, la conexión se utiliza para crear el motor de base de datos y ejecutar operaciones de carga y consulta sobre las tablas del modelo dimensional.
+
+### Manejo de credenciales
+
+Para una implementación segura, las credenciales de conexión a AWS no deben mantenerse escritas directamente dentro del código fuente publicado.
+
+El proyecto documenta el uso de variables de entorno para separar la lógica de conexión de los datos sensibles. Las variables requeridas son:
+
+| Variable | Descripción |
+|---|---|
+| `AURORA_HOST` | Endpoint de la instancia de Amazon Aurora |
+| `AURORA_DATABASE` | Nombre de la base de datos |
+| `AURORA_USER` | Usuario de conexión |
+| `AURORA_PASSWORD` | Contraseña del usuario |
+| `AURORA_PORT` | Puerto de conexión, normalmente `5432` |
+
+Ejemplo conceptual de uso en Python:
+
+```python
+import os
+
+AURORA_HOST = os.getenv("AURORA_HOST")
+AURORA_DATABASE = os.getenv("AURORA_DATABASE")
+AURORA_USER = os.getenv("AURORA_USER")
+AURORA_PASSWORD = os.getenv("AURORA_PASSWORD")
+AURORA_PORT = os.getenv("AURORA_PORT", "5432")
+```
+
+Con estas variables, la conexión puede construirse sin exponer credenciales dentro del repositorio:
+
+```python
+from sqlalchemy import create_engine
+
+engine = create_engine(
+    f"postgresql+psycopg2://{AURORA_USER}:{AURORA_PASSWORD}@{AURORA_HOST}:{AURORA_PORT}/{AURORA_DATABASE}"
+)
+```
+
+Para evitar publicar información sensible, los archivos locales con credenciales deben excluirse del repositorio mediante `.gitignore`.
+
+Ejemplo de exclusión:
+
+```gitignore
+.env
+*.env
+__pycache__/
+.ipynb_checkpoints/
+*.pyc
+```
+
+De esta forma, el proyecto mantiene documentado el acceso a AWS y aplica buenas prácticas básicas para el manejo de credenciales.
 
 ---
 
